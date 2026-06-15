@@ -1,0 +1,5 @@
+*.escpos
+*.log
+__pycache__/
+.DS_Store
+test-pt210.pdf

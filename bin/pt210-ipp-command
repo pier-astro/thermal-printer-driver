@@ -1,0 +1,35 @@
+#!/bin/sh
+set -eu
+
+TOOLS_DIR=$(CDPATH= cd -- "$(dirname -- "$0")" && pwd)
+BRIDGE_QUEUE="${PT210_BRIDGE_QUEUE:-PT210_USB_BRIDGE}"
+
+copies="${4:-1}"
+input="${6:-}"
+
+if [ "$#" -eq 1 ] && [ -f "$1" ]; then
+  copies=1
+  input="$1"
+fi
+
+tmp=""
+cleanup() {
+  if [ -n "$tmp" ] && [ -f "$tmp" ]; then
+    rm -f "$tmp"
+  fi
+}
+trap cleanup EXIT INT TERM
+
+if [ -n "$input" ]; then
+  pdf="$input"
+else
+  tmp=$(mktemp "${TMPDIR:-/tmp}/pt210-ipp.XXXXXX.pdf")
+  cat > "$tmp"
+  pdf="$tmp"
+fi
+
+i=1
+while [ "$i" -le "${copies:-1}" ]; do
+  /usr/bin/python3 "$TOOLS_DIR/pt210-pdf-to-escpos.py" "$pdf" | /usr/bin/lp -d "$BRIDGE_QUEUE" -o raw - >/dev/null
+  i=$((i + 1))
+done
