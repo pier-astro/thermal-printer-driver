@@ -6,7 +6,7 @@ However, the software is often a major roadblock. The cheap consumer apps bundle
 
 **This project changes that.** We provide the drivers necessary to load your thermal printer as a native MacOS printer. This allows you to use your favorite editors, applications, or scripts to design whatever you need (PDF, PNG, JPEG, Bitmaps, etc.) and seamlessly print directly from your Mac.
 
-> 💡 **Note:** This project was specifically created and tested for the **"GOOJPRT PT-210 58mm Mini Portable Printer"** running on **Apple Silicon (M1/M2/M3/M4) MacOS**.
+> 💡 **Note:** This project was specifically created and tested for the **"GOOJPRT PT-210 58mm Mini Portable Printer"** running on **Apple Silicon (M1/M2/M3/M4) MacOS Tahoe**.
 
 # PT210 Tools
 
